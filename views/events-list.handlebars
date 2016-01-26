@@ -1,0 +1,17 @@
+<section>
+  <h1>set current event:</h1>
+  <form action="/set-current-event" method="post">
+    <select name="event">
+      {{#each events}}
+        <option value={{this}}>{{this}}</option>
+      {{/each}}
+    </select>
+    <input type="submit" value="select">
+  </form>
+
+  <h3>current event:</h3>
+  <p>
+    {{{currentEvent}}}
+  </p>
+  <br>
+</section>

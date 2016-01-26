@@ -1,0 +1,12 @@
+{
+  "slug": "bar",
+  "title": "Meet the filmmakers",
+  "moderator": "Foo Bar",
+  "members": [{
+    "name": "Jhon Fan"
+  }, {
+    "name": "Joanna Wu"
+  }, {
+    "name": "Susana Rodrigez"
+  }]
+}

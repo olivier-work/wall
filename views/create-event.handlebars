@@ -1,0 +1,32 @@
+<section>
+
+  <h1>
+    create event
+  </h1>
+
+  <form action="/event" method="post">
+    <p>unique identifier (e.g. meet-the-filmmakers):</p>
+    <input name="slug" value="" placeholder="meet-the-filmmakers">
+    <p>Title of the event:</p>
+    <input name="title" value="" placeholder="Meet the filmmakers">
+    <p>Names of members, comma separated</p>
+    <input name="members" value="" placeholder="Foo Bar, Fee Foo">
+    <p>Name of moderator, if any.</p>
+    <input name="moderator" value="" placeholder="Oee Qee">
+
+    <br><br>
+    <input type="submit" name="name" value="foo">
+  </form>
+
+  {{#if errors}}
+    <h3>errors:</h3>
+    <ul>
+      {{#each errors}}
+        <li>
+          {{this}}
+          <br>
+        </li>
+      {{/each}}
+    </ul>
+  {{/if}}
+</section>
