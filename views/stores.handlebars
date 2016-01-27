@@ -1,0 +1,22 @@
+<section>
+  <h4>Stores</h4>
+
+  <ul class="item-list">
+    {{#each stores}}
+      <li>
+        <span class="item-list__info">
+          <span class="item-list__title">{{this}}</span>
+        </span>
+        
+        <div class="button-group small float-right">
+          <a href="/store/{{this}}/edit" class="button secondary">Edit</a>
+          <a href="/store/{{this}}" class="button success">Events</a>
+        </div>
+      </li>
+    {{else}}
+      <li>There are no stores.</li>
+    {{/each}}
+  </ul>
+
+  <a href="/create-store" class="button large float-right">Create Store</a>
+</section>

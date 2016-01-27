@@ -1,0 +1,40 @@
+<section>
+  <nav aria-label="You are here:" role="navigation">
+    <ul class="breadcrumbs">
+      <li><a href="/">Home</a></li>
+      <li>
+        <span class="show-for-sr">Current: </span> Create Store
+      </li>
+    </ul>
+  </nav>
+
+  <h4>Create New Store</h4>
+
+  <div class="callout clearfix">
+    <form action="/store" method="post">
+      <label>Store Name
+        <input type="text" name="name" placeholder="Union Square">
+      </label>
+
+      <label>Store Player IP
+        <input type="text" name="ip" placeholder="127.0.0.1">
+      </label>
+
+      <button type="submit" class="button float-right">Create Store</button>
+    </form>
+  </div>
+
+  {{#if errors}}
+    <div class="alert callout">
+      <p><strong>Errors</strong></p>
+      <ul>
+        {{#each errors}}
+          <li>
+            {{this}}
+            <br>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+</section>

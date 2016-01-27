@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./index.js",
-    "dev": "nodemon ./index.js"
+    "dev": "nodemon --ignore stores/ ./index.js",
+    "build-css": "./bin/build-css",
+    "watch-css": "./bin/watch-css"
   },
   "author": "",
   "license": "Work & Co",
@@ -14,9 +16,12 @@
     "body-parser": "^1.14.2",
     "express": "^4.13.4",
     "express-handlebars": "^2.0.1",
-    "json-markup": "^0.1.6"
+    "json-markup": "^0.1.6",
+    "slugify": "^0.1.1"
   },
   "devDependencies": {
+    "foundation-sites": "^6.1.2",
+    "node-sass": "^3.4.2",
     "nodemon": "^1.8.1"
   }
 }

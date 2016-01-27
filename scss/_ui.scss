@@ -1,0 +1,29 @@
+.item-list {
+    margin: 0 0 2rem;
+    
+    li {
+        @include clearfix;
+        border: 1px solid $light-gray;
+        font-size: 1.45rem;
+        list-style: none;
+        margin-bottom: -1px;
+        padding: 1rem;
+    }
+    
+    a {
+        display: inline-block;
+    }
+    
+    .button-group {
+        margin-bottom: 0;
+    }
+}
+
+.item-list__info {
+    display: inline-block;
+}
+
+.item-list__date {
+    font-size: 1rem;
+    font-weight: bold;
+}

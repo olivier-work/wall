@@ -1,0 +1,4 @@
+node-sass \
+    --include-path scss \
+    --include-path node_modules/foundation-sites/ \
+    scss/styles.scss public/css/styles.css

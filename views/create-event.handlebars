@@ -1,32 +1,53 @@
 <section>
-
-  <h1>
-    create event
-  </h1>
-
-  <form action="/event" method="post">
-    <p>unique identifier (e.g. meet-the-filmmakers):</p>
-    <input name="slug" value="" placeholder="meet-the-filmmakers">
-    <p>Title of the event:</p>
-    <input name="title" value="" placeholder="Meet the filmmakers">
-    <p>Names of members, comma separated</p>
-    <input name="members" value="" placeholder="Foo Bar, Fee Foo">
-    <p>Name of moderator, if any.</p>
-    <input name="moderator" value="" placeholder="Oee Qee">
-
-    <br><br>
-    <input type="submit" name="name" value="foo">
-  </form>
-
-  {{#if errors}}
-    <h3>errors:</h3>
-    <ul>
-      {{#each errors}}
-        <li>
-          {{this}}
-          <br>
-        </li>
-      {{/each}}
+  <nav aria-label="You are here:" role="navigation">
+    <ul class="breadcrumbs">
+      <li><a href="/">Home</a></li>
+      <li><a href="/store/{{storeSlug}}">Event</a></li>
+      <li>
+        <span class="show-for-sr">Current: </span> Create Event
+      </li>
     </ul>
+  </nav>
+  
+  <h4>Create New Event for {{storeSlug}}</h4>
+
+  <div class="callout clearfix">
+    <form action="/store/{{storeSlug}}/event" method="post">
+      <label>Select Store Location
+      <select name="store">
+        {{#each stores}}
+          <option value={{this}}>{{this}}</option>
+        {{/each}}
+      </select>
+      </label>
+      
+      <label>Event Title
+        <input name="name" value="" type="text" placeholder="Meet the filmmakers">
+      </label>
+  
+      <label>Presenters, comma separated
+        <input name="members" value="" type="text" placeholder="John Smith, Jane Smith">
+      </label>
+  
+      <label>Moderators (if any), comma separated
+        <input name="moderator" value="" type="text" placeholder="Jane Smith">
+      </label>
+  
+      <button type="submit" class="button float-right">Create Event</button>
+    </form>
+  </div>
+  
+  {{#if errors}}
+    <div class="alert callout">
+      <p><strong>Errors</strong></p>
+      <ul>
+        {{#each errors}}
+          <li>
+            {{this}}
+            <br>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
   {{/if}}
 </section>

@@ -1,0 +1,109 @@
+<section>
+  <nav aria-label="You are here:" role="navigation">
+    <ul class="breadcrumbs">
+      <li><a href="/">Home</a></li>
+      <li>
+        <span class="show-for-sr">Current: </span> Store: Events
+      </li>
+    </ul>
+  </nav>
+
+  <h4>Store: Events</h4>
+
+  {{!--<ul class="item-list">--}}
+  {{!--  <li data-presentation="Event" data-event="event-slug" data-ip="10.20.87.112">--}}
+  {{!--    <span class="item-list__info">--}}
+  {{!--      <span class="item-list__title">This super cool awesome event</span>--}}
+  {{!--      <br>--}}
+  {{!--      <span class="item-list__date">Mar. 2, 2016</span>--}}
+  {{!--    </span>--}}
+
+  {{!--    <div class="button-group float-right">--}}
+  {{!--      <button class="js-play-event button small success">Play</button>--}}
+  {{!--      <button class="js-stop-event hidden button small alert">Stop</button>--}}
+  {{!--    </div>--}}
+  {{!--  </li>--}}
+  {{!--</ul>--}}
+
+  {{#if events}}
+    <ul class="item-list">
+      {{#each events}}
+        <li data-event="{{event.slug}}">
+          <a href="#">{{event.title}}</a>
+  
+          <button class="js-play-event button small success">Play</button>
+          <button class="js-stop-event hidden button small alert">Stop</button>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>There are no events for this store.</p>
+  {{/if}}
+
+  <a href="/store/{{storeSlug}}/create-event" class="button float-right">Create New Event</a>
+</section>
+
+<script>
+  ;(function() {
+    var $playButtons = document.querySelectorAll('.js-play-event'),
+      $stopButtons = document.querySelectorAll('.js-stop-event');
+    
+    function startPresentation(ip, presentation){
+  		$.ajax({
+  			type:     "GET",
+  		    url:      "http://" + ip + ":17236/services;execute?command=start%20presentation%20-n%20\"" + presentation + "\"",
+  		    dataType: "jsonp",
+  		    success: function(data) {
+  		        console.log("play command sent");
+  		    },
+  		    error: function(jqXHR, textStatus, errorThrown) {
+  		        alert(errorThrown);
+  		    }
+  		});
+  	}
+  	
+  	function stopPresentation(ip, presentation){
+  		$.ajax({
+  			type:     "GET",
+  		    url:      "http://" + ip + ":17236/services;execute?command=stop%20presentation%20-n%20\"" + presentation+ "\"",
+  		    dataType: "jsonp",
+  		    success: function(data) {
+  		        console.log("stop command sent")
+  		    },
+  		    error: function(jqXHR, textStatus, errorThrown) {
+  		        alert(errorThrown);
+  		    }
+  		});
+  	}
+    
+    function selectAndPlayEvent(evt) {
+      var button = evt.currentTarget,
+        parent = button.parentElement.parentElement,
+        presentation = parent.dataset.presentation,
+        playerIp = parent.dataset.ip;
+        
+      startPresentation(playerIp, presentation);
+    }
+    
+    function stopEvent(evt) {
+      var button = evt.currentTarget,
+        parent = button.parentElement.parentElement,
+        presentation = parent.dataset.presentation,
+        playerIp = parent.dataset.ip;
+        
+      stopPresentation(playerIp, presentation);
+    }
+    
+    for (var i = 0; i < $playButtons.length; i++) {
+      $playButtons[i].addEventListener('click', function(evt) {
+        selectAndPlayEvent(evt);
+      });
+    }
+    
+    for (var i = 0; i < $stopButtons.length; i++) {
+      $stopButtons[i].addEventListener('click', function(evt) {
+        stopEvent(evt);
+      });
+    }
+  })();
+</script>
